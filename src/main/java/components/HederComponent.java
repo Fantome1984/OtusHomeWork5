@@ -16,43 +16,28 @@ public class HederComponent extends AbsBaseComponent implements IModals {
     }
     @FindBy(css = "button[class='header3__button-sign-in']")
     private WebElement buttonSiginIn;
-
     @FindBy(xpath = "//span[@class='header3__user-info-name']")
     private WebElement avatar;
     @FindBy(xpath = "//div[@class=\"header3__user-info-popup-links\"]//a[1]")
     private WebElement name;
-
-
-    private String headerProfileModals = "[data-name='user-info'][class*=' js-header3-popup']";
-
-    private By profile = By.cssSelector("[data-name='user-info'][class*=' js-header3-popup']");
-
-
+    private String headerProfileModals = "[data-name='user-info'][class*='js-header3-popup']";
+    private By profile = By.cssSelector("[data-name='user-info'][class*='js-header3-popup']");
 
    public void chekProfileModals(){
       baseWaiter.waitForVisibileLocator(profile);
-
    }
 
     @Override
     public void modalsSholdBeNotVisible() {
         baseWaiter.waitForCondition(ExpectedConditions.not(ExpectedConditions.attributeContains
                 (driver.findElement(By.cssSelector(headerProfileModals)),"style","none")));
-
     }
 
     @Override
     public void modalsSholdBeVisibal() {
         baseWaiter.waitForCondition(ExpectedConditions.attributeContains
                 (driver.findElement(By.cssSelector(headerProfileModals)),"style","none"));
-
     }
-
-
-
-
-
-
 
 
     public AuthPage clickButtonSiginIn(){

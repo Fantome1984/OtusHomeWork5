@@ -3,8 +3,10 @@ package components;
 import data.*;
 import data.contries.ContryData;
 import data.contries.cities.ICities;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,11 +38,11 @@ public class ProfilePageComponent extends AbsBaseComponent {
     private WebElement сountryInputField;
     @FindBy(css = "[class*='js-lk-cv-dependent-slave-city']")
     private WebElement cityInputField;
-    @FindBy(xpath = "//input[@data-title='Уровень знания английского языка']/../..")
+    @FindBy(xpath = "//input[@data-title='Уровень знания английского языка']/parent::label/parent::div")
     private WebElement languageInputField;
     @FindBy(xpath = "//input[@id='id_ready_to_relocate_1']/..")
     private WebElement radioButton;
-    @FindBy(xpath = "//input[@title='Гибкий график']/../..")
+    @FindBy(xpath = "//input[@title='Гибкий график']/parent::label/span")
     private WebElement chekBox;
     @FindBy(xpath = "//button[text()='Добавить']")
     private WebElement buttonAdd;
@@ -90,11 +92,12 @@ public class ProfilePageComponent extends AbsBaseComponent {
     }
 
     public ProfilePageComponent selectCities(ICities cities) {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
         String selector = String.format(ListSelectionPattern, cities.getName());
         baseWaiter.waitForVisibile(cityInputField);
         actions.moveToElement(cityInputField);
         cityInputField.click();
-        driver.findElement(By.cssSelector(selector)).click();
+        js.executeScript("arguments[0].click();", driver.findElement(By.cssSelector(selector)));
         return this;
 
     }
@@ -115,7 +118,7 @@ public class ProfilePageComponent extends AbsBaseComponent {
     }
 
     public ProfilePageComponent clickChekBox() {
-        baseWaiter.waitForVisibile(chekBox);
+       baseWaiter.waitForVisibile(chekBox);
         chekBox.click();
         return this;
     }
@@ -135,7 +138,6 @@ public class ProfilePageComponent extends AbsBaseComponent {
         return this;
 
     }
-
 
     public ProfilePageComponent enteringContactDetailsTwo(CommunicationData communicationData) {
         String selector = String.format("//input[@name='contact-1-service']/parent::label/following-sibling::div/descendant::"+messengerLocator,
@@ -223,7 +225,6 @@ public class ProfilePageComponent extends AbsBaseComponent {
         Assert.assertEquals(langEpx,driver.findElement(By.xpath(selector)).getAttribute("value"));
         return this;
     }
-
 
     public ProfilePageComponent communicationChek(CommunicationData communicationData,String langEpx){
         String selector = String.format(String.format(communicationExpected,communicationData.getName()));

@@ -13,18 +13,11 @@ public class AuthPage extends AbsBasePage{
         super(driver, "/");
     }
 
-
     @FindBy(css = "[class='new-log-reg__title-wrapper']")
    private WebElement authPageTextSelector;
-
-
-
-
-
 
     public void HeaderAuthorizationCheck(){
         baseWaiter.waitForVisibile(authPageTextSelector);
         Assert.assertEquals(authPageTextSelector.getText(),"ВОЙДИТЕ В СВОЙ АККАУНТ");
     }
-
 }

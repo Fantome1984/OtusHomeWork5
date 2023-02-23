@@ -1,4 +1,4 @@
-package helper;
+package pages;
 
 
 import org.openqa.selenium.WebDriver;
@@ -19,7 +19,6 @@ public class PageObgect {
         baseWaiter = new BaseWaiter(driver);
         PageFactory.initElements(driver, this);
     }
-
 
     public void actionsMoveElement(WebElement element){
         Actions actions = new Actions(driver);

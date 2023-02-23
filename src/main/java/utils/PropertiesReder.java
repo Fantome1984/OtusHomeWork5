@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-public class PropertiesReder implements Iutils {
+public class PropertiesReder implements IUtils {
     @Override
     public Map<String, String> read(){
 

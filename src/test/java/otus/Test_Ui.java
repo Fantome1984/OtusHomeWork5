@@ -8,7 +8,6 @@ import data.contries.cities.RussiaCitiesData;
 import exeptions.BrowserNotSupportedExeption;
 import factories.WebDriverFactory;
 import helper.Logger;
-import helper.PageObgect;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.junit.After;
@@ -23,20 +22,15 @@ import java.time.LocalDate;
 
 public class Test_Ui {
     public org.apache.logging.log4j.Logger logger = LogManager.getLogger(Logger.class);
-
     private WebDriver driver;
-
     @BeforeClass
-
     public static void setUpDriver() {
         WebDriverManager.chromedriver().setup();
     }
-
     @Before
     public void setUp() throws BrowserNotSupportedExeption {
         driver = new WebDriverFactory().createDriver();
     }
-
     @After
 
     public void setDown(){
@@ -44,11 +38,8 @@ public class Test_Ui {
             driver.quit();
         }
     }
-
     @Test
-
     public void profileFilling() throws InterruptedException {
-
         String fname = "Никита";
         String lname ="Шлеткин";
         String fname_latin ="Nikita";
@@ -66,8 +57,6 @@ public class Test_Ui {
         LocalDate dateOfBirth = LocalDate.of(1997,11,25);
         String communikationContactOne ="facebook";
         String communikationContactTwo ="vk";
-
-
 
         logger.info("Перешли на страницу Отуса");
         new MainPage(driver)
@@ -131,27 +120,6 @@ public class Test_Ui {
                 .communicationChek(CommunicationData.VKEXP,communikationContactTwo)
                 .genderChek(GenderData.MALE,gender)
                 .developmentExperienceChek(DevelopmentlanguagesData.JAVA,developmentLang);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }

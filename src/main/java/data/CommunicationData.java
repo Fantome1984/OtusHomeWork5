@@ -6,10 +6,6 @@ public enum CommunicationData {
     VKEXP("1-service'"),
     FACEBOOKEXP("0-service'");
 
-
-
-
-
     private String name;
 
     CommunicationData(String name) {

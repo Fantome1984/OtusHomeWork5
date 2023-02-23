@@ -30,10 +30,11 @@ public class BaseWaiter {
    Assert.assertTrue(waitForCondition(ExpectedConditions.visibilityOf(element)));
     }
 
-
-
     public void waitForVisibileLocator(By locator){
         Assert.assertTrue(waitForCondition(ExpectedConditions.visibilityOfElementLocated(locator)));
+    }
+    public void waitForClikibal(WebElement element){
+        Assert.assertTrue(waitForCondition(ExpectedConditions.elementToBeClickable(element)));
     }
 
 }

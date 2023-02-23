@@ -1,6 +1,5 @@
 package pages;
 
-import helper.PageObgect;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AbsBasePage  extends PageObgect {
@@ -13,10 +12,7 @@ public abstract class AbsBasePage  extends PageObgect {
        this.path = path;
    }
 
-
     public void openPage(){
-
        driver.get(BASE_URL.replaceAll("\\/$","")+path);
-
     }
 }
